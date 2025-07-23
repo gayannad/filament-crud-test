@@ -39,9 +39,7 @@ class ProductColorResource extends Resource
                         TextInput::make('hex_code')
                             ->rules(['nullable', new HexColorValidate]),
                     ]),
-                ])
-                    ->from('2xl')
-                    ->columnSpanFull(),
+                ])->columnSpanFull(),
             ]);
     }
 
@@ -67,6 +65,7 @@ class ProductColorResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

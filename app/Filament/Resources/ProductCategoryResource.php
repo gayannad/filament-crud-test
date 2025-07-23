@@ -6,6 +6,7 @@ use App\Filament\Resources\ProductCategoryResource\Pages;
 use App\Models\ProductCategory;
 use Filament\Forms;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -38,6 +39,13 @@ class ProductCategoryResource extends Resource
 
                         TextInput::make('external_url')
                             ->maxLength(255),
+
+                        Select::make('productTypes')
+                            ->label('Product Types')
+                            ->multiple()
+                            ->relationship('productTypes', 'name')
+                            ->preload(),
+
                     ]),
                 ])
                     ->from('2xl')

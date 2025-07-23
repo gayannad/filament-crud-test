@@ -10,7 +10,7 @@ use App\Models\User;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
-class ProductCountWidget extends BaseWidget
+class ModelCountWidget extends BaseWidget
 {
     protected function getStats(): array
     {

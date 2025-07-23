@@ -15,6 +15,10 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Infolists\Components\Grid;
+use Filament\Infolists\Components\RepeatableEntry;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -128,6 +132,7 @@ class ProductResource extends Resource
                     ->icon('heroicon-o-arrow-path')
                     ->requiresConfirmation()
                     ->label('Process Now'),
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])->bulkActions([
@@ -150,6 +155,36 @@ class ProductResource extends Resource
             'index' => Pages\ListProducts::route('/'),
             'create' => Pages\CreateProduct::route('/create'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
+            'view' => Pages\ViewProduct::route('/{record}'),
         ];
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                \Filament\Infolists\Components\Split::make([
+                    \Filament\Infolists\Components\Section::make([
+                        Grid::make(2)->schema([
+                            TextEntry::make('name')->label('Product Name'),
+                            TextEntry::make('description')->label('Description'),
+                            TextEntry::make('category.name')->label('Category'),
+                            TextEntry::make('color.name')->label('Color'),
+                            TextEntry::make('status')->label('Status'),
+                        ]),
+                    ]),
+
+                    \Filament\Infolists\Components\Section::make([
+                        RepeatableEntry::make('productTypes')
+                            ->label('Product Types')
+                            ->schema([
+                                TextEntry::make('name'),
+                            ])
+                            ->columnSpanFull(),
+                    ]),
+
+                ])->columnSpanFull(),
+
+            ]);
     }
 }
