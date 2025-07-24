@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // create test user
         User::create([
             'name' => 'Test User',
             'email' => 'test@example.com',

@@ -12,7 +12,7 @@ class ProductCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('product_categories')->insert([
+        $categories = [
             [
                 'name' => 'CAT1',
                 'description' => 'CAT1',
@@ -34,6 +34,8 @@ class ProductCategorySeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
+        ];
+
+        DB::table('product_categories')->insert($categories);
     }
 }

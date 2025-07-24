@@ -47,6 +47,9 @@ class User extends Authenticatable implements FilamentUser
         ];
     }
 
+    /**
+     * This for users to access panel in prod envs
+     */
     public function canAccessPanel(Panel $panel): bool
     {
         return str_ends_with($this->email, '@example.com');

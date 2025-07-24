@@ -15,7 +15,7 @@ class ProductTypeSeeder extends Seeder
     {
         $service = new ProductTypeService;
 
-        DB::table('product_types')->insert([
+        $types = [
             [
                 'name' => 'TYPE1',
                 'api_unique_number' => $service->fetchUniqueNumber('TYPE1'),
@@ -34,6 +34,8 @@ class ProductTypeSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
+        ];
+
+        DB::table('product_types')->insert($types);
     }
 }

@@ -12,7 +12,7 @@ class ProductColorSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('product_colors')->insert([
+        $colors = [
             [
                 'name' => 'Red',
                 'description' => 'Red',
@@ -34,6 +34,8 @@ class ProductColorSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-        ]);
+        ];
+
+        DB::table('product_colors')->insert($colors);
     }
 }

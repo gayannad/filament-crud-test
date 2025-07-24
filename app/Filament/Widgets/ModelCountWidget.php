@@ -12,6 +12,9 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class ModelCountWidget extends BaseWidget
 {
+    /**
+     * for display dashboard statistics
+     */
     protected function getStats(): array
     {
         return [

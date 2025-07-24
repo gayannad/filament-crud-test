@@ -160,6 +160,9 @@ class ProductResource extends Resource
         ];
     }
 
+    /**
+     * infolist for product view
+     */
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
@@ -185,7 +188,6 @@ class ProductResource extends Resource
                     ]),
 
                 ])->columnSpanFull(),
-
             ]);
     }
 }
