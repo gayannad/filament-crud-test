@@ -15,7 +15,7 @@ class AddressValidationService
     }
 
     /**
-     * Login to the external API and return Bearer token
+     * Login to the API and return Bearer token
      */
     private function loginAndGetToken(): string
     {
@@ -39,7 +39,7 @@ class AddressValidationService
     }
 
     /**
-     * Parse full address into components
+     * Parse full address
      */
     public function parseAddress(string $address): array
     {
@@ -48,13 +48,13 @@ class AddressValidationService
         $components = array_map('trim', explode(',', $address));
 
         if (count($components) < 5) {
-            throw new \Exception('Address format is invalid. Expected at least 5 parts.');
+            throw new \Exception('Address format is invalid.');
         }
 
         $street_number = $components[0] ?? '';
         $street_name = $components[1] ?? '';
         $suburb = $components[2] ?? '';
-        $state_postcode = $components[3] ?? ''; // e.g., VIC 3140
+        $state_postcode = $components[3] ?? '';
         $country = $components[4] ?? '';
 
         // Split state and postcode
@@ -80,7 +80,7 @@ class AddressValidationService
     }
 
     /**
-     * Validate parsed address against external API
+     * Validate parsed address
      */
     public function validateAddress(array $components): bool
     {

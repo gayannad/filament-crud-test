@@ -21,6 +21,7 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
@@ -106,7 +107,6 @@ class ProductResource extends Resource
                             ),
 
                         ProductStatusBar::make('status_bar')->label('Status')->columnSpanFull(),
-
                     ]),
                 ])->columnSpanFull(),
             ]);
@@ -120,7 +120,7 @@ class ProductResource extends Resource
                 TextColumn::make('name')->sortable(),
                 TextColumn::make('status')->sortable()->badge(),
                 TextColumn::make('color.name')->label('Color')->sortable(),
-                TextColumn::make('category.name')->label('Category')->badge(),
+                TextColumn::make('category.name')->color(Color::Emerald)->label('Category')->badge(),
             ])
             ->filters([
 
@@ -130,6 +130,7 @@ class ProductResource extends Resource
                         dispatch(new \App\Jobs\ProcessProduct($record));
                     })
                     ->icon('heroicon-o-arrow-path')
+                    ->color(Color::Fuchsia)
                     ->requiresConfirmation()
                     ->label('Process Now'),
                 Tables\Actions\ViewAction::make(),
@@ -139,7 +140,7 @@ class ProductResource extends Resource
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->defaultSort('id', 'desc');
     }
 
     public static function getRelations(): array

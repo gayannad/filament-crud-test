@@ -48,13 +48,10 @@ class ProductTypeResource extends Resource
                                     ->icon('heroicon-o-rectangle-stack')
                                     ->tooltip('Fetch API Unique Number')
                             ),
-
                         TextInput::make('api_unique_number')
                             ->readOnly(),
                     ]),
-                ])
-                    ->from('2xl')
-                    ->columnSpanFull(),
+                ])->columnSpanFull(),
             ]);
     }
 
@@ -64,15 +61,12 @@ class ProductTypeResource extends Resource
             ->columns([
                 TextColumn::make('id')
                     ->sortable(),
-
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-
                 TextColumn::make('api_unique_number')
                     ->searchable()
                     ->sortable(),
-
             ])
             ->filters([
                 //
@@ -85,7 +79,7 @@ class ProductTypeResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])->defaultSort('id', 'desc');
     }
 
     public static function getRelations(): array

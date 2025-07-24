@@ -12,8 +12,7 @@ class ProductStatusBar extends Field
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->dehydrated(false); // don't save in form data
+        $this->dehydrated(false);
     }
 
     public static function form(Form $form): Form
